@@ -1,0 +1,10 @@
+@import 'lenis/dist/lenis.css';
+@import './styles/global.css';
+@import './styles/typography.css';
+@import './styles/animations.css';
+@import './styles/selected-work.css';
+@import './styles/services.css';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;

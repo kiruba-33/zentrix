@@ -1,0 +1,153 @@
+/* ==========================================================================
+   ZENTRIX STUDIO — ANIMATIONS & MICRO-INTERACTIONS
+   Phase 1 to Phase 5: Cinematic Editorial Motion System
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   Editorial Hover Underline
+   Smooth directional line sweep
+   -------------------------------------------------------------------------- */
+.editorial-nav-link {
+  position: relative;
+  display: inline-block;
+  padding-block: 0.25rem;
+  color: var(--color-ink);
+  transition: color 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  text-decoration: none;
+}
+
+.editorial-nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background-color: var(--color-ink);
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.editorial-nav-link:hover::after,
+.editorial-nav-link:focus-visible::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+/* Light / Paper underline variant for dark surfaces */
+.editorial-nav-link-light {
+  color: var(--color-paper);
+}
+
+.editorial-nav-link-light::after {
+  background-color: var(--color-paper);
+}
+
+/* --------------------------------------------------------------------------
+   CTA Arrow & Button Micro-Interactions
+   -------------------------------------------------------------------------- */
+.editorial-cta-arrow {
+  display: inline-block;
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.group:hover .editorial-cta-arrow,
+button:hover .editorial-cta-arrow,
+a:hover .editorial-cta-arrow {
+  transform: translate(2px, -2px);
+}
+
+/* Subtle magnetic button transition helper */
+.editorial-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  border: 1px solid var(--color-ink);
+  background-color: transparent;
+  color: var(--color-ink);
+  font-family: var(--font-display);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+              color 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.editorial-btn:hover {
+  background-color: var(--color-ink);
+  color: var(--color-paper);
+}
+
+.editorial-btn-dark {
+  border-color: var(--color-paper);
+  color: var(--color-paper);
+}
+
+.editorial-btn-dark:hover {
+  background-color: var(--color-paper);
+  color: var(--color-ink);
+}
+
+/* --------------------------------------------------------------------------
+   Mobile Navigation Menu Transitions
+   -------------------------------------------------------------------------- */
+.mobile-nav-backdrop {
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+              visibility 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.mobile-nav-backdrop.is-open {
+  opacity: 1;
+  visibility: visible;
+}
+
+.mobile-nav-drawer {
+  transform: translateY(-100%);
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.mobile-nav-drawer.is-open {
+  transform: translateY(0);
+}
+
+/* --------------------------------------------------------------------------
+   Smooth Navbar Background Blur & Transition on Scroll
+   -------------------------------------------------------------------------- */
+.editorial-navbar {
+  transition: background-color 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.editorial-navbar.is-scrolled {
+  background-color: rgba(241, 239, 232, 0.94);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom-color: var(--color-border);
+  box-shadow: 0 4px 20px rgba(21, 21, 21, 0.03);
+}
+
+/* --------------------------------------------------------------------------
+   Reduced-Motion Overrides
+   -------------------------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  .editorial-nav-link::after,
+  .editorial-cta-arrow,
+  .editorial-btn,
+  .mobile-nav-backdrop,
+  .mobile-nav-drawer,
+  .editorial-navbar {
+    transition-duration: 0.01ms !important;
+    animation: none !important;
+    transform: none !important;
+  }
+}
